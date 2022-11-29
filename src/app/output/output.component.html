@@ -1,0 +1,10 @@
+<input type="date" name="date" id="date" formControlName="date" />
+<hr>
+
+<div *ngFor="let pay of arrPay | async">
+<span>{{pay.date |  date:'medium'}}</span> 
+<p><strong>{{pay.value}}</strong></p>
+<span>{{pay.comment}}</span>
+
+
+</div>

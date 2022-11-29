@@ -1,0 +1,69 @@
+<div class="inputBlock">
+  <form [formGroup]="myForm">
+    <input
+      type="number"
+      required
+      placeholder="Введите сумму"
+      name="name"
+      formControlName="value"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        myForm.controls['value'].invalid && myForm.controls['value'].touched
+      "
+    >
+      Не введена сумма
+    </div>
+    <hr/>
+    <textarea
+      name=""
+      id=""
+      cols="30"
+      rows="10"
+      placeholder="Введите комментарий"
+      formControlName="comment"
+    ></textarea>
+    <hr/>
+    <input
+      type="radio"
+      required
+      name="type"
+      value="+"
+      formControlName="type"
+    />
+    <label for="type">приход</label>
+    <input
+      required
+      type="radio"
+      name="type"
+      value="-"
+      formControlName="type"
+    />
+    <label for="type">расход</label>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        myForm.controls['type'].invalid &&
+        myForm.controls['type'].touched
+      "
+    >
+      Не выбран тип
+    </div>
+    <hr/>
+
+    
+
+    <hr/>
+    <input type="date" name="date" id="date" formControlName="date"/>
+    <hr/>
+    <button class="green" *ngIf="!myForm.controls['type'].invalid"
+            (click)="submit()">OK
+    </button>
+    <button class="red" *ngIf="myForm.controls['type'].invalid">OK</button>
+  </form>
+</div>
+<br/>
+<br/>
+
+
