@@ -1,10 +1,22 @@
-<input type="date" name="date" id="date" formControlName="date" />
-<hr>
+<div>
+  <form [formGroup]="dateForm">
+    <input type="date" formControlName="date"/>
+    <button (click)="logDate()">log date</button>
+  </form>
+  <hr/>
 
-<div *ngFor="let pay of arrPay | async">
-<span>{{pay.date |  date:'medium'}}</span> 
-<p><strong>{{pay.value}}</strong></p>
-<span>{{pay.comment}}</span>
 
-
+  <div *ngFor="let payDay of arrPay | async">
+    <div
+      *ngIf="this.dataService.getRussianDate(payDay.date) === (this.dataService.getRussianDate(this.dateForm.value.date))">
+      <h3>{{ payDay.date | date: "mediumDate" }}</h3>
+      <div *ngFor="let payment of payDay.payments">
+        <p>
+          <span>{{ payment.date | date:'hh:mm'}}</span>
+          {{ payment.value }} <span>{{ payment.comment }}</span>
+        </p>
+      </div>
+      <h3>Всего: {{getPayDaySum(payDay.payments)}}</h3>
+    </div>
+  </div>
 </div>

@@ -1,12 +1,13 @@
-<div class="inputBlock">
+<div class="container">
   <form [formGroup]="myForm">
-    <input
+    <input class=""
       type="number"
       required
       placeholder="Введите сумму"
       name="name"
       formControlName="value"
     />
+    <br>
     <div
       class="alert alert-danger"
       *ngIf="
@@ -15,55 +16,38 @@
     >
       Не введена сумма
     </div>
-    <hr/>
+
     <textarea
       name=""
       id=""
-      cols="30"
-      rows="10"
+      cols="20"
+      rows="1"
       placeholder="Введите комментарий"
       formControlName="comment"
     ></textarea>
-    <hr/>
-    <input
-      type="radio"
-      required
-      name="type"
-      value="+"
-      formControlName="type"
-    />
+    <br>
+    <input type="radio" required name="type" value="+" formControlName="type" />
     <label for="type">приход</label>
-    <input
-      required
-      type="radio"
-      name="type"
-      value="-"
-      formControlName="type"
-    />
+    <input required type="radio" name="type" value="-" formControlName="type" />
     <label for="type">расход</label>
     <div
       class="alert alert-danger"
-      *ngIf="
-        myForm.controls['type'].invalid &&
-        myForm.controls['type'].touched
-      "
+      *ngIf="myForm.controls['type'].invalid && myForm.controls['type'].touched"
     >
       Не выбран тип
     </div>
-    <hr/>
-
-    
-
-    <hr/>
-    <input type="date" name="date" id="date" formControlName="date"/>
-    <hr/>
-    <button class="green" *ngIf="!myForm.controls['type'].invalid"
-            (click)="submit()">OK
+    <br>
+    <input type="date" name="date" id="date" formControlName="date" />
+    <hr />
+    <button
+      class="btn btn-dark"
+      (click)="submit()"
+      [disabled]="myForm.invalid"
+    >
+      OK
     </button>
-    <button class="red" *ngIf="myForm.controls['type'].invalid">OK</button>
-  </form>
-</div>
-<br/>
-<br/>
 
+  </form>
+
+</div>
 
